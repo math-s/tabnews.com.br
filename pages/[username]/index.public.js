@@ -88,7 +88,7 @@ export default function Page({ userFound: userFoundFallback }) {
     const responseBody = await response.json();
 
     if (response.status === 200) {
-      userFoundMutate(responseBody, { revalidate: false });
+      userFoundMutate({ body: responseBody }, { revalidate: false });
       return;
     }
 
@@ -106,7 +106,7 @@ export default function Page({ userFound: userFoundFallback }) {
 
   function handleEditSuccess(newUser) {
     setIsEditingDescription(false);
-    userFoundMutate(newUser, { revalidate: false });
+    userFoundMutate({ body: newUser }, { revalidate: false });
   }
 
   function OptionsMenu() {
@@ -486,7 +486,6 @@ export const getStaticProps = getStaticPropsRevalidate(async (context) => {
   return {
     props: {
       userFound: JSON.parse(JSON.stringify(secureUserFound)),
-      key: secureUserFound.id,
     },
 
     revalidate: 10,
