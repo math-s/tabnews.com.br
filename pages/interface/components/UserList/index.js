@@ -70,7 +70,15 @@ function UserListItem({ user }) {
           </Link>
         </Box>
         {user.description && (
-          <Text sx={{ wordWrap: 'break-word', fontWeight: 'normal', fontStyle: 'italic', fontSize: 1 }}>
+          <Text
+            sx={{
+              display: 'block',
+              overflow: 'auto',
+              wordWrap: 'break-word',
+              fontWeight: 'normal',
+              fontStyle: 'italic',
+              fontSize: 1,
+            }}>
             {user.description}
           </Text>
         )}
