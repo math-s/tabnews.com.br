@@ -52,9 +52,9 @@ export default function HeaderComponent() {
   const canListUsers = user?.features.includes('read:user:list');
 
   return (
-    <PrimerHeader as="header" id="header" sx={{ minWidth: '100%', px: [2, null, null, 3] }}>
+    <PrimerHeader as="header" id="header" sx={{ minWidth: 'max-content', px: [2, null, null, 3] }}>
       <SearchBoxOverlay />
-      <Box as="nav" sx={{ display: 'flex', flex: 1, margin: 0, padding: 0, overflowX: 'auto' }}>
+      <Box as="nav" sx={{ display: 'flex', flex: 1, margin: 0, padding: 0 }}>
         <PrimerHeader.Item sx={{ mr: 0 }}>
           <HeaderLink href="/" aria-label="Página inicial Relevantes" aria-current={asPath === '/' ? 'page' : false}>
             <CgTab size={32} />
@@ -65,7 +65,7 @@ export default function HeaderComponent() {
           </HeaderLink>
         </PrimerHeader.Item>
 
-        <PrimerHeader.Item full={!canListUsers || isScreenSmall} sx={{ mr: 0 }}>
+        <PrimerHeader.Item full sx={{ mr: 0 }}>
           <HeaderLink
             href="/recentes/pagina/1"
             aria-current={asPath === '/recentes/pagina/1' ? 'page' : false}
@@ -73,17 +73,6 @@ export default function HeaderComponent() {
             Recentes
           </HeaderLink>
         </PrimerHeader.Item>
-
-        {canListUsers && !isScreenSmall && (
-          <PrimerHeader.Item full sx={{ mr: 0 }}>
-            <HeaderLink
-              href="/moderacao/usuarios/1"
-              aria-current={asPath === '/moderacao/usuarios/1' ? 'page' : false}
-              sx={asPath.startsWith('/moderacao') ? activeLinkStyle : { ml: 3 }}>
-              Usuários
-            </HeaderLink>
-          </PrimerHeader.Item>
-        )}
       </Box>
 
       {!isLoading && !(isScreenSmall && user) && (
@@ -178,7 +167,7 @@ export default function HeaderComponent() {
                     <Truncate>{user.username}</Truncate>
                   </NavItem>
 
-                  {canListUsers && isScreenSmall && (
+                  {canListUsers && (
                     <NavList.Group>
                       <NavItem href="/moderacao/usuarios/1">
                         <NavList.LeadingVisual>
