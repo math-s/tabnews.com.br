@@ -34,8 +34,11 @@ import validator from 'models/validator.js';
 import { createErrorMessage, useUser } from 'pages/interface';
 
 export default function Page({ userFound: userFoundFallback }) {
-  const { data: userFound, mutate: userFoundMutate } = useSWR(`/api/v1/users/${userFoundFallback.username}`, {
-    fallbackData: userFoundFallback,
+  const {
+    data: { body: userFound },
+    mutate: userFoundMutate,
+  } = useSWR(`/api/v1/users/${userFoundFallback.username}`, {
+    fallbackData: { body: userFoundFallback },
     revalidateOnMount: false,
   });
 
