@@ -1,6 +1,6 @@
 import { Box, Label, Link, Pagination, PastTime, Text } from '@/TabNewsUI';
 
-export default function UserList({ userList, pagination, paginationBasePath }) {
+export default function UserList({ userList, pagination }) {
   const listNumberStart = pagination.perPage * (pagination.currentPage - 1) + 1;
 
   return (
@@ -21,7 +21,7 @@ export default function UserList({ userList, pagination, paginationBasePath }) {
         ))}
       </Box>
 
-      <Pagination {...pagination} basePath={paginationBasePath} />
+      <Pagination {...pagination} />
     </>
   );
 }
